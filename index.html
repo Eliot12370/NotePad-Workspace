@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notepad Workspace</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2310a37f'><path d='M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z'/></svg>">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="brand">
+        <i data-lucide="file-text" class="brand-icon"></i>
+        <span>DocWorkspace</span>
+      </div>
+    </div>
+    
+    <div class="sidebar-actions">
+      <button class="btn-sidebar" id="btnSelectFolder">
+        <i data-lucide="folder"></i> Abrir Carpeta
+      </button>
+      <button class="btn-sidebar primary" id="btnNewFile">
+        <i data-lucide="plus"></i> Nuevo Documento
+      </button>
+    </div>
+
+    <div class="file-list-header">MIS ARCHIVOS</div>
+    <div class="file-list" id="fileList"></div>
+  </aside>
+
+  <!-- Panel Principal -->
+  <main class="main-content">
+    <header class="toolbar">
+      <div class="toolbar-left">
+        <div class="history-group">
+          <button id="btnUndo" title="Deshacer (Ctrl+Z)"><i data-lucide="undo-2"></i></button>
+          <button id="btnRedo" title="Rehacer (Ctrl+Y)"><i data-lucide="redo-2"></i></button>
+        </div>
+        <div class="divider"></div>
+        <div class="text-format-group">
+          <button onclick="document.execCommand('bold', false, null)" title="Negrita"><i data-lucide="bold"></i></button>
+          <button onclick="document.execCommand('italic', false, null)" title="Cursiva"><i data-lucide="italic"></i></button>
+          <button onclick="document.execCommand('underline', false, null)" title="Subrayado"><i data-lucide="underline"></i></button>
+        </div>
+        <div class="divider"></div>
+        <button id="btnCopyAll" title="Copiar todo el documento">
+          <i data-lucide="copy"></i> Copiar Todo
+        </button>
+      </div>
+
+      <button id="btnSave" class="btn-save">
+        <i data-lucide="save"></i> Guardar Cambios
+      </button>
+    </header>
+
+    <section class="editor-layout">
+      <!-- Panel de subtítulos / Índice apilado -->
+      <nav class="subtitles-nav">
+        <div class="nav-title">ÍNDICE DE SUBTÍTULOS</div>
+        <div id="subtitlesList" class="subtitles-list"></div>
+      </nav>
+
+      <!-- Lienzo de edición -->
+      <div class="editor-container" id="editorContainer">
+        <div class="document-wrapper">
+          <input type="text" id="docTitle" class="document-title" placeholder="Título del Documento..." disabled>
+          <div id="blocksContainer" class="blocks-container"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Menú Contextual Clic Derecho -->
+  <div id="contextMenu" class="context-menu">
+    <div class="context-menu-item" id="ctxRename"><i data-lucide="edit-3"></i> Renombrar</div>
+    <div class="context-menu-item" id="ctxDuplicate"><i data-lucide="copy"></i> Duplicar</div>
+    <div class="context-menu-divider"></div>
+    <div class="context-menu-item danger" id="ctxDelete"><i data-lucide="trash-2"></i> Eliminar de la PC</div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
